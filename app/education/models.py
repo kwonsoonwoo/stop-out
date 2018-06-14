@@ -4,15 +4,15 @@ from django.utils import timezone
 
 class School(models.Model):
     name = models.CharField(max_length=20)
-    description = models.CharField(max_length=200)
+    description = models.TextField(max_length=500)
 
-
+    def __str__(self):
+        return self.name
 
 class Student(models.Model):
     school = models.ForeignKey(School, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now())
 
-    def create(self):
-        self.created_at = timezone.now()
-        self.save()
+    def __str__(self):
+        return self.name
